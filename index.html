@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Clariss Crisol — Automation Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf9f7;
+    --surface: #f3f1ed;
+    --border: #e2dfd8;
+    --border-strong: #c8c4bb;
+    --text: #1a1917;
+    --text-2: #5a5751;
+    --text-3: #9a9690;
+    --teal: #0f6e56;
+    --teal-light: #e1f5ee;
+    --blue: #185fa5;
+    --blue-light: #e6f1fb;
+    --purple: #534ab7;
+    --purple-light: #eeedfe;
+    --gray-light: #f1efe8;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141412;
+      --surface: #1e1d1b;
+      --border: #2e2c28;
+      --border-strong: #444240;
+      --text: #f0ede8;
+      --text-2: #a8a49e;
+      --text-3: #6a6660;
+      --teal: #5dcaa5;
+      --teal-light: #04342c;
+      --blue: #85b7eb;
+      --blue-light: #042c53;
+      --purple: #afa9ec;
+      --purple-light: #26215c;
+      --gray-light: #2c2c2a;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: -0.3px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--text-2); text-decoration: none; letter-spacing: 0.04em; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { font-size: 12px; padding: 7px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); color: var(--text-2); text-decoration: none; transition: all .2s; }
+  .nav-cta:hover { background: var(--surface); color: var(--text); }
+
+  /* LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  .hero { padding: 6rem 0 5rem; border-bottom: 1px solid var(--border); }
+  .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-3); margin-bottom: 1.25rem; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(48px, 8vw, 72px); line-height: 1; letter-spacing: -1px; margin-bottom: 1rem; }
+  .hero-sub { font-size: 15px; color: var(--text-2); max-width: 480px; margin-bottom: 2rem; line-height: 1.65; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 11px; padding: 4px 11px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-2); letter-spacing: 0.06em; }
+  .hero-badge { text-align: right; }
+  .avail-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #1D9E75; margin-right: 6px; }
+  .avail-label { font-size: 12px; color: var(--teal); }
+  .remote-badge { margin-top: 8px; font-size: 11px; color: var(--text-3); letter-spacing: 0.06em; }
+
+  /* SECTIONS */
+  section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  .sec-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); margin-bottom: 2rem; display: flex; align-items: center; gap: 12px; }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* BIO */
+  .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .bio-body { font-size: 15px; color: var(--text-2); line-height: 1.8; }
+  .bio-body p + p { margin-top: 1rem; }
+  .bio-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .stat-card { background: var(--surface); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--text); line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 12px; color: var(--text-3); letter-spacing: 0.06em; }
+
+  /* TOOLS */
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.1rem; transition: border-color .2s, background .2s; cursor: default; }
+  .tool-card:hover { border-color: var(--border-strong); background: var(--bg); }
+  .tool-icon { font-size: 20px; margin-bottom: 8px; }
+  .tool-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .tool-type { font-size: 11px; color: var(--text-3); }
+
+  /* PROJECTS */
+  .proj-list { display: flex; flex-direction: column; gap: 1px; }
+  .proj-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.75rem; transition: border-color .2s; }
+  .proj-card:hover { border-color: var(--border-strong); }
+  .proj-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; gap: 1rem; }
+  .proj-client { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+  .proj-name { font-size: 16px; font-weight: 500; }
+  .proj-live { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--teal); }
+  .proj-live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+  .proj-desc { font-size: 13px; color: var(--text-2); line-height: 1.65; margin: 10px 0 14px; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .ptag { font-size: 11px; padding: 3px 9px; background: var(--surface); border-radius: 4px; color: var(--text-2); border: 1px solid var(--border); }
+
+  /* WORKFLOWS */
+  .wf-tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .wf-tab { font-size: 12px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 20px; color: var(--text-2); cursor: pointer; background: transparent; transition: all .2s; font-family: 'DM Sans', sans-serif; }
+  .wf-tab:hover, .wf-tab.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .wf-panel { display: none; }
+  .wf-panel.active { display: block; }
+  .wf-meta-row { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .wf-badge { font-size: 11px; padding: 3px 9px; border: 1px solid var(--border); border-radius: 4px; color: var(--text-2); background: var(--surface); }
+  .wf-legend { display: flex; gap: 14px; margin-bottom: 1rem; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-3); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 2px; }
+  .wf-svg-wrap { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); padding: 1rem; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .skill-group { background: var(--surface); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+  .sk-title { font-size: 12px; font-weight: 500; color: var(--text-2); margin-bottom: 10px; letter-spacing: 0.04em; }
+  .sk-items { display: flex; flex-direction: column; gap: 6px; }
+  .sk-item { font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 8px; }
+  .sk-check { color: var(--teal); font-size: 14px; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-body { font-size: 15px; color: var(--text-2); line-height: 1.8; }
+  .contact-body strong { color: var(--text); font-weight: 500; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-2); text-decoration: none; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); transition: all .2s; }
+  .contact-link:hover { border-color: var(--border-strong); color: var(--text); background: var(--surface); }
+  .contact-link-icon { font-size: 16px; }
+
+  /* FOOTER */
+  footer { padding: 2rem 0; text-align: center; font-size: 12px; color: var(--text-3); border-top: 1px solid var(--border); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .container { padding: 0 1.25rem; }
+    .hero { padding: 3.5rem 0 3rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hero-badge { text-align: left; }
+    .bio-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Clariss Crisol</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#workflows">Workflows</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.linkedin.com/in/clarisscrisol/" target="_blank" class="nav-cta">LinkedIn →</a>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero" style="border-bottom:none; padding-bottom: 4rem;">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">Automation Specialist · Remote · Philippines</p>
+        <h1 class="hero-name">Clariss<br>Crisol</h1>
+        <p class="hero-sub">I build workflow automations that connect tools, eliminate manual work, and help teams move faster — from CRM pipelines to multi-app integrations.</p>
+        <div class="hero-chips">
+          <span class="chip">GoHighLevel</span>
+          <span class="chip">Zapier</span>
+          <span class="chip">n8n</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">Asana</span>
+          <span class="chip">ClickUp</span>
+          <span class="chip">Slack</span>
+          <span class="chip">Pipedrive</span>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div><span class="avail-dot"></span><span class="avail-label">Available for work</span></div>
+        <div class="remote-badge">Remote · Worldwide</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="sec-label">About</p>
+    <div class="bio-grid">
+      <div class="bio-body">
+        <p>Clariss Crisol is a no-code and low-code automation specialist focused on helping businesses run smarter through connected systems. With experience spanning GoHighLevel, Zapier, n8n, Asana, ClickUp, Pipedrive, and Slack, she designs end-to-end workflows that eliminate repetitive tasks, improve team coordination, and accelerate operations.</p>
+        <p>Her project work includes building AI-driven sales pipeline automations for <strong>Selr.ai</strong> and creating member onboarding and engagement systems for <strong>FiTribe</strong> — integrating payment events, CRM data, and real-time notifications into unified, reliable workflows.</p>
+        <p>She brings both the technical fluency to work directly with REST APIs and webhooks, and the systems thinking to translate complex business processes into clean, maintainable automations. Available for freelance and contract engagements — fully remote.</p>
+      </div>
+      <div class="bio-stats">
+        <div class="stat-card">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Platforms integrated</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Remote · available worldwide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Featured client projects (Selr.ai · FiTribe)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <p class="sec-label">Tools & Platforms</p>
+    <div class="tools-grid">
+      <div class="tool-card"><div class="tool-icon">⚡</div><div class="tool-name">GoHighLevel</div><div class="tool-type">CRM & Automation</div></div>
+      <div class="tool-card"><div class="tool-icon">🔀</div><div class="tool-name">Zapier</div><div class="tool-type">Workflow Automation</div></div>
+      <div class="tool-card"><div class="tool-icon">🔧</div><div class="tool-name">n8n</div><div class="tool-type">Low-code Pipelines</div></div>
+      <div class="tool-card"><div class="tool-icon">🔌</div><div class="tool-name">REST APIs</div><div class="tool-type">Custom Integrations</div></div>
+      <div class="tool-card"><div class="tool-icon">✅</div><div class="tool-name">Asana</div><div class="tool-type">Project Management</div></div>
+      <div class="tool-card"><div class="tool-icon">📋</div><div class="tool-name">ClickUp</div><div class="tool-type">Task Automation</div></div>
+      <div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name">Slack</div><div class="tool-type">Notification Systems</div></div>
+      <div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Pipedrive</div><div class="tool-type">CRM Pipelines</div></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="sec-label">Featured Projects</p>
+    <div class="proj-list">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div>
+            <p class="proj-client">Selr.ai</p>
+            <p class="proj-name">AI Sales Pipeline Automation</p>
+          </div>
+          <div class="proj-live"><div class="proj-live-dot"></div>Live</div>
+        </div>
+        <p class="proj-desc">Built end-to-end automation flows connecting Selr.ai's AI-driven outreach with CRM data pipelines. Integrated GHL workflows to auto-enroll leads, trigger follow-up sequences, and sync contact records in real time via REST API. Implemented qualification scoring logic to route hot leads into immediate sales sequences.</p>
+        <div class="proj-tags">
+          <span class="ptag">GoHighLevel</span><span class="ptag">Zapier</span><span class="ptag">REST API</span><span class="ptag">Lead Routing</span><span class="ptag">Webhooks</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div>
+            <p class="proj-client">FiTribe</p>
+            <p class="proj-name">Member Onboarding & Engagement System</p>
+          </div>
+          <div class="proj-live"><div class="proj-live-dot"></div>Live</div>
+        </div>
+        <p class="proj-desc">Designed automated onboarding journeys for fitness community members using GHL pipelines and Zapier triggers. Connected Stripe payment events, form submissions, and Slack notifications to keep the team and members in sync. Built plan-type branching logic to route premium members to VIP channels and assign coaches automatically.</p>
+        <div class="proj-tags">
+          <span class="ptag">GoHighLevel</span><span class="ptag">Zapier</span><span class="ptag">Slack</span><span class="ptag">Onboarding Flows</span><span class="ptag">Stripe API</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div>
+            <p class="proj-client">Client Work</p>
+            <p class="proj-name">Multi-app Task Sync — Asana × ClickUp × Slack</p>
+          </div>
+        </div>
+        <p class="proj-desc">Automated project task creation and status updates across Asana and ClickUp via n8n, with Slack notifications routed by project type. Eliminated manual handoffs between project managers and operations teams. Built conditional logic to route tasks to the correct ClickUp list based on project category tags.</p>
+        <div class="proj-tags">
+          <span class="ptag">n8n</span><span class="ptag">Asana API</span><span class="ptag">ClickUp API</span><span class="ptag">Slack Webhooks</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div>
+            <p class="proj-client">Client Work</p>
+            <p class="proj-name">Pipedrive Deal Automation & Reporting</p>
+          </div>
+        </div>
+        <p class="proj-desc">Connected Pipedrive CRM to Slack and email via Zapier, automating deal-stage notifications, task assignments, and weekly pipeline digest reports. Reduced manual CRM updates for a sales team of 10+, with error handling and retry logic built into every step.</p>
+        <div class="proj-tags">
+          <span class="ptag">Pipedrive</span><span class="ptag">Zapier</span><span class="ptag">Slack</span><span class="ptag">Email Automation</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKFLOW DIAGRAMS -->
+  <section id="workflows">
+    <p class="sec-label">Sample Workflows</p>
+    <div class="wf-tabs">
+      <button class="wf-tab active" onclick="switchTab('selrai')">Selr.ai Pipeline</button>
+      <button class="wf-tab" onclick="switchTab('fitribe')">FiTribe Onboarding</button>
+      <button class="wf-tab" onclick="switchTab('n8n')">Asana × ClickUp Sync</button>
+    </div>
+
+    <!-- SELR.AI -->
+    <div class="wf-panel active" id="tab-selrai">
+      <div class="wf-meta-row">
+        <span class="wf-badge">GoHighLevel</span><span class="wf-badge">Zapier</span><span class="wf-badge">REST API</span>
+      </div>
+      <div class="wf-legend">
+        <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div>Trigger</div>
+        <div class="leg"><div class="leg-dot" style="background:#378ADD"></div>Action</div>
+        <div class="leg"><div class="leg-dot" style="background:#7F77DD"></div>Condition</div>
+        <div class="leg"><div class="leg-dot" style="background:#888780"></div>Outcome</div>
+      </div>
+      <div class="wf-svg-wrap">
+        <svg width="100%" viewBox="0 0 660 520" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Selr.ai GHL lead automation workflow</title>
+          <defs>
+            <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <rect x="215" y="20" width="230" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.8"/>
+          <text x="330" y="43" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#085041">New lead captured</text>
+          <text x="330" y="61" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0f6e56">Selr.ai outreach response</text>
+          <line x1="330" y1="73" x2="330" y2="100" stroke="#1D9E75" stroke-width="1.2" marker-end="url(#a1)"/>
+          <rect x="215" y="101" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="124" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Zapier webhook trigger</text>
+          <text x="330" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Receives lead payload via API</text>
+          <line x1="330" y1="154" x2="330" y2="181" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a1)"/>
+          <rect x="215" y="182" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="205" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Create GHL contact</text>
+          <text x="330" y="223" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Map fields · tag lead source</text>
+          <line x1="330" y1="235" x2="330" y2="262" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a1)"/>
+          <rect x="225" y="263" width="210" height="52" rx="8" fill="#eeedfe" stroke="#534ab7" stroke-width="0.8"/>
+          <text x="330" y="286" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#3C3489">Lead qualified?</text>
+          <text x="330" y="304" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#534ab7">AI score ≥ threshold</text>
+          <line x1="225" y1="289" x2="138" y2="289" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a1)"/>
+          <text x="180" y="281" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">Yes</text>
+          <line x1="435" y1="289" x2="522" y2="289" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a1)"/>
+          <text x="480" y="281" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">No</text>
+          <rect x="40" y="263" width="155" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.8"/>
+          <text x="118" y="286" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#085041">Hot sequence</text>
+          <text x="118" y="304" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0f6e56">SMS + email + call task</text>
+          <rect x="465" y="263" width="155" height="52" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.8"/>
+          <text x="543" y="286" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">Nurture drip</text>
+          <text x="543" y="304" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5f5e5a">7-day email sequence</text>
+          <line x1="118" y1="316" x2="118" y2="400" stroke="#1D9E75" stroke-width="1" fill="none"/>
+          <path d="M118 400 L260 400" stroke="#1D9E75" stroke-width="1" fill="none" marker-end="url(#a1)"/>
+          <line x1="543" y1="316" x2="543" y2="400" stroke="#888780" stroke-width="1" fill="none"/>
+          <path d="M543 400 L400 400" stroke="#888780" stroke-width="1" fill="none" marker-end="url(#a1)"/>
+          <line x1="330" y1="316" x2="330" y2="378" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a1)"/>
+          <rect x="215" y="379" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="402" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Sync back to CRM</text>
+          <text x="330" y="420" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Update status · log activity</text>
+          <line x1="330" y1="432" x2="330" y2="459" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a1)"/>
+          <rect x="215" y="460" width="230" height="44" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.8"/>
+          <text x="330" y="485" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">Pipeline updated · report sent</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- FITRIBE -->
+    <div class="wf-panel" id="tab-fitribe">
+      <div class="wf-meta-row">
+        <span class="wf-badge">GHL</span><span class="wf-badge">Zapier</span><span class="wf-badge">Slack</span><span class="wf-badge">Stripe API</span>
+      </div>
+      <div class="wf-legend">
+        <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div>Trigger</div>
+        <div class="leg"><div class="leg-dot" style="background:#378ADD"></div>Action</div>
+        <div class="leg"><div class="leg-dot" style="background:#7F77DD"></div>Condition</div>
+        <div class="leg"><div class="leg-dot" style="background:#888780"></div>Outcome</div>
+      </div>
+      <div class="wf-svg-wrap">
+        <svg width="100%" viewBox="0 0 660 540" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>FiTribe member onboarding workflow</title>
+          <defs>
+            <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <rect x="215" y="20" width="230" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.8"/>
+          <text x="330" y="43" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#085041">Stripe payment success</text>
+          <text x="330" y="61" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0f6e56">Webhook on charge.succeeded</text>
+          <line x1="330" y1="73" x2="330" y2="100" stroke="#1D9E75" stroke-width="1.2" marker-end="url(#a2)"/>
+          <rect x="215" y="101" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="124" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Zapier catch webhook</text>
+          <text x="330" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Parse plan type + member data</text>
+          <line x1="330" y1="154" x2="330" y2="181" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a2)"/>
+          <rect x="215" y="182" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="202" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Create / update GHL contact</text>
+          <text x="330" y="222" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Tag member · set plan · pipeline</text>
+          <line x1="330" y1="235" x2="330" y2="262" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a2)"/>
+          <rect x="215" y="263" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="286" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Send welcome sequence</text>
+          <text x="330" y="304" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Email + SMS via GHL workflow</text>
+          <line x1="330" y1="316" x2="330" y2="343" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a2)"/>
+          <rect x="230" y="344" width="200" height="52" rx="8" fill="#eeedfe" stroke="#534ab7" stroke-width="0.8"/>
+          <text x="330" y="367" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#3C3489">Plan type?</text>
+          <text x="330" y="385" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#534ab7">Premium vs Standard</text>
+          <line x1="230" y1="370" x2="130" y2="370" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a2)"/>
+          <text x="178" y="362" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">Premium</text>
+          <line x1="430" y1="370" x2="490" y2="370" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a2)"/>
+          <text x="462" y="362" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">Standard</text>
+          <rect x="32" y="344" width="155" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.8"/>
+          <text x="110" y="367" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#085041">VIP Slack channel</text>
+          <text x="110" y="385" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0f6e56">Coach + buddy assigned</text>
+          <rect x="490" y="344" width="148" height="52" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.8"/>
+          <text x="564" y="367" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">General Slack alert</text>
+          <text x="564" y="385" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5f5e5a">Team notified</text>
+          <line x1="110" y1="397" x2="110" y2="462" stroke="#1D9E75" stroke-width="1"/>
+          <path d="M110 462 L260 462" stroke="#1D9E75" stroke-width="1" marker-end="url(#a2)"/>
+          <line x1="564" y1="397" x2="564" y2="462" stroke="#888780" stroke-width="1"/>
+          <path d="M564 462 L400 462" stroke="#888780" stroke-width="1" marker-end="url(#a2)"/>
+          <line x1="330" y1="397" x2="330" y2="442" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a2)"/>
+          <rect x="215" y="443" width="230" height="52" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.8"/>
+          <text x="330" y="466" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">Deliver onboarding kit</text>
+          <text x="330" y="484" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5f5e5a">Resources · schedule · community link</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- N8N -->
+    <div class="wf-panel" id="tab-n8n">
+      <div class="wf-meta-row">
+        <span class="wf-badge">n8n</span><span class="wf-badge">Asana</span><span class="wf-badge">ClickUp</span><span class="wf-badge">Slack</span>
+      </div>
+      <div class="wf-legend">
+        <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div>Trigger</div>
+        <div class="leg"><div class="leg-dot" style="background:#378ADD"></div>Action</div>
+        <div class="leg"><div class="leg-dot" style="background:#7F77DD"></div>Condition</div>
+        <div class="leg"><div class="leg-dot" style="background:#888780"></div>Outcome</div>
+      </div>
+      <div class="wf-svg-wrap">
+        <svg width="100%" viewBox="0 0 660 480" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>n8n Asana ClickUp Slack sync workflow</title>
+          <defs>
+            <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <rect x="215" y="20" width="230" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.8"/>
+          <text x="330" y="43" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#085041">Asana task status changed</text>
+          <text x="330" y="61" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0f6e56">n8n webhook node receives event</text>
+          <line x1="330" y1="73" x2="330" y2="100" stroke="#1D9E75" stroke-width="1.2" marker-end="url(#a3)"/>
+          <rect x="215" y="101" width="230" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="124" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Transform data</text>
+          <text x="330" y="142" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Map Asana fields to ClickUp schema</text>
+          <line x1="330" y1="154" x2="330" y2="181" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a3)"/>
+          <rect x="235" y="182" width="190" height="52" rx="8" fill="#eeedfe" stroke="#534ab7" stroke-width="0.8"/>
+          <text x="330" y="205" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#3C3489">Project type?</text>
+          <text x="330" y="223" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#534ab7">Check custom field tag</text>
+          <line x1="330" y1="235" x2="330" y2="262" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a3)"/>
+          <line x1="235" y1="208" x2="110" y2="208" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a3)"/>
+          <line x1="425" y1="208" x2="548" y2="208" stroke="#7F77DD" stroke-width="1.2" marker-end="url(#a3)"/>
+          <text x="170" y="200" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">Ops</text>
+          <text x="330" y="252" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">Dev</text>
+          <text x="490" y="200" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#888780">Design</text>
+          <rect x="30" y="182" width="135" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="98" y="205" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Ops ClickUp list</text>
+          <text x="98" y="223" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Create / update task</text>
+          <rect x="255" y="263" width="150" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="330" y="286" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Dev ClickUp list</text>
+          <text x="330" y="304" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Create / update task</text>
+          <rect x="495" y="182" width="135" height="52" rx="8" fill="#e6f1fb" stroke="#185fa5" stroke-width="0.8"/>
+          <text x="563" y="205" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#0C447C">Design ClickUp list</text>
+          <text x="563" y="223" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#185fa5">Create / update task</text>
+          <line x1="98" y1="235" x2="98" y2="355" stroke="#378ADD" stroke-width="1"/>
+          <path d="M98 355 L248 355" stroke="#378ADD" stroke-width="1" marker-end="url(#a3)"/>
+          <line x1="330" y1="316" x2="330" y2="355" stroke="#378ADD" stroke-width="1.2" marker-end="url(#a3)"/>
+          <line x1="563" y1="235" x2="563" y2="355" stroke="#378ADD" stroke-width="1"/>
+          <path d="M563 355 L412 355" stroke="#378ADD" stroke-width="1" marker-end="url(#a3)"/>
+          <rect x="215" y="356" width="230" height="52" rx="8" fill="#e1f5ee" stroke="#0f6e56" stroke-width="0.8"/>
+          <text x="330" y="379" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#085041">Route Slack notification</text>
+          <text x="330" y="397" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0f6e56">Channel matched to project type</text>
+          <line x1="330" y1="409" x2="330" y2="436" stroke="#1D9E75" stroke-width="1.2" marker-end="url(#a3)"/>
+          <rect x="215" y="437" width="230" height="36" rx="8" fill="#f1efe8" stroke="#5f5e5a" stroke-width="0.8"/>
+          <text x="330" y="458" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">Sync confirmed · team notified</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="skills">
+    <p class="sec-label">Capabilities</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="sk-title">Automation & workflows</p>
+        <div class="sk-items">
+          <span class="sk-item"><span class="sk-check">✓</span> GHL workflows & funnels</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Zapier multi-step zaps</span>
+          <span class="sk-item"><span class="sk-check">✓</span> n8n visual pipelines</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Trigger-based logic & routing</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Webhook management</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="sk-title">Integrations & APIs</p>
+        <div class="sk-items">
+          <span class="sk-item"><span class="sk-check">✓</span> REST API connections</span>
+          <span class="sk-item"><span class="sk-check">✓</span> OAuth & auth flows</span>
+          <span class="sk-item"><span class="sk-check">✓</span> JSON data mapping</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Slack & email bots</span>
+          <span class="sk-item"><span class="sk-check">✓</span> CRM data syncing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="sk-title">Project & CRM tools</p>
+        <div class="sk-items">
+          <span class="sk-item"><span class="sk-check">✓</span> Asana setup & automation</span>
+          <span class="sk-item"><span class="sk-check">✓</span> ClickUp workspace config</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Pipedrive pipeline builds</span>
+          <span class="sk-item"><span class="sk-check">✓</span> GoHighLevel CRM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="sk-title">Process design</p>
+        <div class="sk-items">
+          <span class="sk-item"><span class="sk-check">✓</span> SOP documentation</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Onboarding flow design</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Lead routing logic</span>
+          <span class="sk-item"><span class="sk-check">✓</span> Error handling & logs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="sec-label">Get in Touch</p>
+    <div class="contact-grid">
+      <div class="contact-body">
+        <p>Open to <strong>freelance and contract work</strong> in automation, workflow builds, and API integrations. Based in the <strong>Philippines</strong> — available remotely worldwide across time zones.</p>
+        <p style="margin-top:1rem;">Whether you need a full automation system built from scratch or an existing workflow cleaned up and optimised, reach out through LinkedIn or email.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/clarisscrisol/" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🔗</span> LinkedIn — Clariss Crisol
+        </a>
+        <a href="mailto:hello@clarisscrisol.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span> hello@clarisscrisol.com
+        </a>
+        <a href="https://www.linkedin.com/in/clarisscrisol/" target="_blank" class="contact-link">
+          <span class="contact-link-icon">📍</span> Philippines · Remote worldwide
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    © 2026 Clariss Crisol · Automation Specialist · Remote
+  </div>
+</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.wf-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.wf-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
